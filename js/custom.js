@@ -52,11 +52,54 @@ $(function () {
         interval: 5000
      });
 
-	 /* Toggle languages
+	 /* Scroll to
      -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- */
-	// $.i18n.load(data);
-	// document.getElementById("navhome").textContent = data.en.navhome;
+	 $(document).ready(function() {
+		$("#navHome, #navAboutme, #navPortfolio, #navContact").on("click", function(event) {
+			console.log("Clicked on:", this.id)
+			if (this.hash !== "") {
+				event.preventDefault();
+				var hash = this.hash;
+				$('html, body').animate({
+					scrollTop: $(hash).offset().top
+				}, 1000, function() {
+					window.location.hash = hash;
+				});
+			}
+		});
+	});
+	/* Smooth scroll
+	-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- */
+	const observer = new IntersectionObserver((entries) => {
+		entries.forEach((entry) => {
+		  console.log(entry);
+		  if (entry.isIntersecting) {
+			entry.target.classList.add('show');
+		  } else {
+			entry.target.classList.remove('show');
+		  }
+		});
+	  });
+	  
+	  const hiddenElements = document.querySelectorAll('.hidden');
+	  hiddenElements.forEach((el) => observer.observe(el));
+	/* Cookies Consent
+	-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- */
+	const cookieBox = document.querySelector(".wrapper");
+	const buttons = document.querySelectorAll(".button");
 
+	if (document.cookie.includes("cookieby=codinglab")) return;
+	cookieBox.classList.add("show"); 
+
+	buttons.forEach((button) => {
+		button.addEventListener("click", () => {
+		cookieBox.classList.remove("show");
+
+		if (button.id === "acceptBtn") {
+			document.cookie = "cookieby=codinglab; max-age=" + 60 * 60 * 24;
+		}
+		});
+	});
 });
 
 	/* Toggle sidebar

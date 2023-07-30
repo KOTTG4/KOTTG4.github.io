@@ -21,6 +21,19 @@ import Fonts
 basic 
 ---------------------------------------------------------------------*/
 
+.hidden{
+     opacity: 0;
+     filter: blur(5px);
+     transform: translateX(-100%);
+     transition: all 1s;
+}
+
+.show{
+     opacity: 1;
+     filter: blur(0);
+     transform: translateX(0);
+}
+
 body {
      color: #666666;
      font-size: 14px;
@@ -57,27 +70,33 @@ h6 {
 }
 
 h1 {
-     font-size: 24px
+     font-size: 24px;
+     text-shadow: 1px 1px 10px #000;
 }
 
 h2 {
-     font-size: 22px
+     font-size: 22px;
+
 }
 
 h3 {
-     font-size: 18px
+     font-size: 18px;
+
 }
 
 h4 {
-     font-size: 16px
+     font-size: 16px;
+
 }
 
 h5 {
-     font-size: 14px
+     font-size: 14px;
+
 }
 
 h6 {
-     font-size: 13px
+     font-size: 13px;
+
 }
 
 *,
@@ -468,8 +487,82 @@ ul.email li i {
      color: #fff;
      background: #0e0b01;
 }
+/** Cookies**/
 
+.wrapper{
+     display: none;
+     position: fixed;
+     bottom: 20px;
+     right: 20px;
+     z-index: 999;
+     max-width: 345px;
+     width: 100%;
+     background: #ffffff;
+     border-radius: 8px;
+     padding: 15px 25px 22px;
+     transition: right 0.1s ease;
+     box-shadow:  0 5px 10px rgba(0, 0, 0, 0.1);
+}
+.wrapper.show{
+     right: 20px;
+     display: flex;
+     flex-direction: column;
+}
 
+.wrapper header{
+     display: flex;
+     align-items: center;
+     column-gap: 15px;
+}
+header i {
+     color: #031330;
+     font-size: 32px;
+}
+header h2 {
+     color: #031330;
+     font-weight: 500;
+}
+.wrapper .data{
+     margin-top: 16px;
+}
+.wrapper .data p{
+     color: #333;
+     font-size: 16px;
+}
+.data p a{
+     color: #031330;
+     text-decoration: none;
+}
+.data p a:hover{
+     text-decoration: underline;
+}
+.wrapper .buttons{
+     margin-top: 16px;
+     width: 100%;
+}
+.buttons .button{
+     border: 1px solid #000;
+     color: #000000;
+     padding: 8px 0;
+     border-radius: 4px;
+     background: #fefeff;
+     cursor: pointer;
+     width: calc(100% / 2 - 10px);
+     transition: all 0.2s ease;
+}
+.buttons #acceptBtn:hover{
+     background-color: #000000;
+     color: #fffe
+}
+#declineBtn{
+     border: 1px solid #000000;
+     background-color: #ffffff;
+     color: #000000;
+}
+#declineBtn:hover{
+     background-color: #000000;
+     color: #ffffff;
+}
 /** we_do **/
 .row-we-do{
      display: flex;
